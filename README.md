@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Downstatebait
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.23.
@@ -25,3 +26,7 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+=======
+# downstatebaitco
+Code for the website for my small business that I operate on the side, Downstate Bait.
+>>>>>>> 50ed5204b8a1db0a890d97d9a9f222c101bcd5c6
