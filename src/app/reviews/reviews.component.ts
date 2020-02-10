@@ -1,28 +1,41 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'reviews',
   templateUrl: './reviews.component.html',
   styleUrls: ['./reviews.component.css']
 })
-export class ReviewsComponent {
 
-  posts: any;
-  private url = 'http://jsonplaceholder.typicode.com/posts';
+export class ReviewsComponent implements OnInit {
+  reviews: any;
+  private url = "http://jsonplaceholder.typicode.com/posts";
 
-  constructor(private http: HttpClient) {
-      http.get(this.url)
-        .subscribe(data => {
-          this.posts = data;
-        });
-   }
+  constructor(private http: HttpClient) { }
+    
+  httpGet = this.http
+      .get(this.url)
+      .subscribe(response => {
+          this.reviews = response;
+      })
 
-   createPost(input: HTMLInputElement) {
-      let post = { title: input.value };
-      this.http.post(this.url, JSON.stringify(post))
-        .subscribe(data => {
-            console.log(data);
-        });
-   }
+  ngOnInit() {
+    this.httpGet;
+  }
+
+  createReview( input: HTMLInputElement ) {
+    console.log("createReview");
+
+    let review = { title: input.value }
+    input.value = '';
+
+    this.http
+      .post(this.url, JSON.stringify(review))
+      .subscribe(response => {
+        review['id'] = response['id'];
+        this.reviews.splice(0, 0, review);
+      })
+  }
 }

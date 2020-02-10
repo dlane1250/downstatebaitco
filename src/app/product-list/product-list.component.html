@@ -1,0 +1,70 @@
+
+<!-- <ul class="nav nav-pills">
+    <li class="nav-item">
+        <a class="btn nav-link" [class.active]="viewMode !=='list'" (click)="viewMode = 'icon'">Icon View</a>
+    </li>
+    <li class = "nav-item">
+        <a class = "btn nav-link" [class.active]="viewMode =='list'" (click)="viewMode = 'list'">List View</a>
+    </li>
+</ul> -->
+
+<div [ngSwitch]="viewMode">
+    <div *ngSwitchDefault> 
+        <div class="card-columns">
+            <div *ngFor="let product of products">
+                <div class="card text-white bg-info border-dark mb-3">
+                    <img src= "{{ product.img }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <div class="text-right"><button type="submit" class="btn btn-danger" (click)="onDelete(product.id)">X</button></div>
+                            <h5 class="card-title">{{ product.title }}</h5>
+                            <p class="card-text"><em>${{ product.price }}</em></p>
+                                <br>
+                                <br>
+                                <nav>
+                                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                    <a class="nav-item nav-link active" id="nav-description-tab" data-toggle="tab" href="#nav-description" role="tab" aria-controls="nav-description" aria-selected="true">Description</a>
+                                    <a class="nav-item nav-link" id="nav-details-tab" data-toggle="tab" href="#nav-details" role="tab" aria-controls="nav-details" aria-selected="false">Details</a>
+                                    </div>
+                                </nav>
+                                <div class="tab-content" id="nav-tabContent">
+                                    <div class="tab-pane fade show active" id="nav-description" role="tabpanel" aria-labelledby="nav-description-tab">{{ product.description }}</div>
+                                    <div class="tab-pane fade" id="nav-details" role="tabpanel" aria-labelledby="nav-details-tab">Details</div>
+                                </div>
+                                <!--<ng-content class="quantity" select=".quantity"></ng-content>
+                                <strong>Description:</strong> <br> {{ product.description }}-->
+                            <form>
+                                <div class="form-row pb-4">
+                                    <div class="col-sm-4">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <button class = "btn btn-secondary">-</button>
+                                            </div>
+                                            <input type="text" class="form-control" id="quantity" placeholder="0">
+                                            <div class="input-group-append">
+                                                <button class = "btn btn-secondary">+</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <button type="submit" class="btn btn-primary">Add to Cart</button>
+                                    </div>
+                                </div>
+                            </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--     <div *ngSwitchCase="'list'">
+        <ul class = "prod">
+            <li *ngFor = "let product of products" >
+               <img src = ' {{ product.img }} ' /> {{ product.title }} {{ product.price }} {{ product.quantity }} {{ product.description }}
+               <quantity></quantity>
+            </li>
+        </ul>
+    </div>-->
+</div>
+
+<div [hidden] = "products.length > 0">
+    Sorry, we do not currently have any products in stock.
+</div>
